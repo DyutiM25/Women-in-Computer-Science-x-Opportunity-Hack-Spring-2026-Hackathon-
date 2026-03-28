@@ -7,8 +7,8 @@
 
 ## Team "Not So Cool"
 - Sai Amulya Pingili
-- Sai Amulya Pingili
 - Niharika Ravilla
+- Dyuti Mengji
 
 ## Project Overview
 Brief description of your project and its goals.
