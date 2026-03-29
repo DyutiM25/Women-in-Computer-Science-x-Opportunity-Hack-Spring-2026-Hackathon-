@@ -1,11 +1,5 @@
-import Stripe from "stripe";
+import Stripe from 'stripe'
 
-export function getStripeClient() {
-  const apiKey = process.env.STRIPE_SECRET_KEY;
-
-  if (!apiKey) {
-    return null;
-  }
-
-  return new Stripe(apiKey);
-}
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2026-03-25.dahlia',
+})
