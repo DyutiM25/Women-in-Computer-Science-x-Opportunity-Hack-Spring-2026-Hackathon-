@@ -1,238 +1,156 @@
-# WIAL MVP Platform
+<div align="center">
 
-Project built for the **Women in Computer Science x Opportunity Hack: Spring 2026 Hackathon** at **Arizona State University, Tempe**.
+<br/>
 
-This project rethinks the WIAL web experience as a modern, chapter-aware platform: one shared public site, reusable chapter microsites, a searchable coach directory, and an admin workspace for provisioning and managing chapter experiences without creating a new codebase for every region.
+```
+██╗    ██╗██╗ █████╗ ██╗          ███╗   ███╗██╗   ██╗██████╗
+██║    ██║██║██╔══██╗██║          ████╗ ████║██║   ██║██╔══██╗
+██║ █╗ ██║██║███████║██║          ██╔████╔██║██║   ██║██████╔╝
+██║███╗██║██║██╔══██║██║          ██║╚██╔╝██║╚██╗ ██╔╝██╔═══╝
+╚███╔███╔╝██║██║  ██║███████╗     ██║ ╚═╝ ██║ ╚████╔╝ ██║
+ ╚══╝╚══╝ ╚═╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝  ╚═══╝  ╚═╝
+```
 
-## Hackathon
+**One platform. Every chapter. Every coach. Every region.**
 
-**Event:** Women in Computer Science x Opportunity Hack: Spring 2026 Hackathon  
-**Theme:** Build technical solutions for nonprofit organizations and create technology that does good  
-**Hackathon page:** https://www.ohack.dev/hack/2026_spring_wics_asu  
-**DevPost:** https://wics-ohack-sp26-hackathon.devpost.com/  
-**Team Slack:** https://opportunity-hack.slack.com/app_redirect?channel=team-21-not-so-cool
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-21--not--so--cool.vercel.app-6366f1?style=for-the-badge)](https://21-not-so-cool.vercel.app/)
+[![Hackathon](https://img.shields.io/badge/🏆_Hackathon-WiCS_×_Opportunity_Hack_2026-ec4899?style=for-the-badge)](https://www.ohack.dev/hack/2026_spring_wics_asu)
+[![DevPost](https://img.shields.io/badge/📋_DevPost-Submission-003e54?style=for-the-badge)](https://wics-ohack-sp26-hackathon.devpost.com/)
 
-## Team
+</div>
 
-**Team Name:** Not So Cool
+---
 
-- Sai Amulya Pingili
-- Niharika Ravilla
-- Dyuti Mengji
+## 🎯 The Problem
 
-## Problem We Chose To Solve
+> WIAL has a global brand, regional chapters, coaches, certification pathways, and chapter-specific outreach needs — but those experiences shouldn't require a brand-new website or engineering workflow every time a chapter launches.
 
-WIAL has a global brand, regional chapters, coaches, certification pathways, and chapter-specific outreach needs, but those experiences should not require a brand-new website or engineering workflow every time a chapter launches.
+We built an MVP that gives WIAL a **single, scalable platform** instead of dozens of disconnected sites.
 
-We built an MVP that gives WIAL:
+---
 
-- a cleaner public-facing website
-- reusable chapter microsites under a shared template
-- a searchable coach discovery experience
-- an admin workflow for chapter provisioning and access management
-- a foundation for future payments, CMS-managed content, and smarter search
+## ✨ What We Built
 
-## What We Implemented
+<table>
+<tr>
+<td width="25%" align="center">
 
-### Public website
+### 🌍
+**Public Site**
+Branded WIAL landing page with cleaner messaging and full marketing page suite
 
-- Branded landing page for WIAL with clearer messaging around Action Learning
-- Dedicated marketing pages for:
-  - `/about`
-  - `/action-learning`
-  - `/action-learning/benefits`
-  - `/certification`
-  - `/our-services`
-  - `/contact`
-  - `/newsletter`
-- Shared layout with reusable header/footer and responsive styling
+</td>
+<td width="25%" align="center">
 
-### Chapter microsite system
+### 🏛️
+**Chapter Microsites**
+Dynamic chapter routes powered by a shared template — launch a new region in minutes
 
-- Dynamic chapter routes powered by a shared template
-- Working chapter pages at:
-  - `/:chapter`
-  - `/:chapter/about`
-  - `/:chapter/contact`
-- Chapter data can come from:
-  - Supabase `chapters` records when configured
-  - local fallback seed data when Supabase is not configured
-- Existing seeded/fallback examples include chapters such as USA, Nigeria, Philippines, Brazil, and Canada depending on data source
+</td>
+<td width="25%" align="center">
 
-### Coach discovery
+### 🔍
+**Coach Directory**
+Searchable, filterable coach discovery with profiles, certifications, and chapter affiliation
 
-- Searchable coach directory page
-- Filtering by:
-  - name / free text
-  - chapter
-  - certification level
-- Coach detail page at `/coaches/[id]`
-- Seed-data fallback so the experience still works in demo mode
+</td>
+<td width="25%" align="center">
 
-### Admin workspace
+### 🛠️
+**Admin Workspace**
+Auth-protected provisioning dashboard with role-aware access for global admins and chapter leads
 
-- Auth-protected admin area under `/admin`
-- Supabase-auth-based login flow
-- Allowlisted admin authorization via `chapter_admins`
-- Global admin view for:
-  - provisioning new chapter sites
-  - managing access records
-  - reviewing active chapter routes
-- Chapter lead experience with one-click chapter provisioning when pre-approved
-- Live chapter content editing for chapter summary/about/contact content
+</td>
+</tr>
+</table>
 
-### Backend and integration work
+---
 
-- App Router API routes for chapter provisioning and admin management
-- Stripe checkout + webhook flow for enrollment/certification payments
-- Sanity Studio route for future CMS-driven content editing
-- Jina embedding endpoint scaffold for future semantic coach search
-- Supabase SQL schema, seed data, and RLS files included in the repo
+## 🏗️ Architecture at a Glance
 
-## Highlight Features
+```
+┌─────────────────────────────────────────────────────┐
+│                  PUBLIC ROUTES                      │
+│  /  ·  /about  ·  /coaches  ·  /certification  ...  │
+├─────────────────────────────────────────────────────┤
+│              DYNAMIC CHAPTER ROUTES                 │
+│       /:chapter  ·  /:chapter/about  ·  ...         │
+├─────────────────────────────────────────────────────┤
+│                 ADMIN WORKSPACE                     │
+│    /admin  ·  /admin/access  ·  /admin/login        │
+├──────────────┬──────────────┬────────────────────────┤
+│   Supabase   │    Stripe    │   Sanity CMS / Jina    │
+│  Auth + DB   │   Payments   │  Content + Embeddings  │
+└──────────────┴──────────────┴────────────────────────┘
+```
 
-- **Reusable chapter architecture:** new chapter routes can be launched from shared templates instead of shipping a new site per region.
-- **Provisioning workflow:** admins can create chapter records that immediately become public routes.
-- **Role-aware admin access:** separates global admins from chapter leads and supports pre-approved one-click provisioning.
-- **Coach directory with fallback data:** the app remains demoable even without a live database connection.
-- **Extensible backend foundation:** Stripe, Sanity, embeddings, and Supabase schema are already started for future expansion.
+---
 
-## Route Architecture
+## 🗺️ Route Map
 
-### Public routes
-
+### Public Routes
 | Route | Purpose |
-| --- | --- |
+|-------|---------|
 | `/` | Main WIAL landing page |
 | `/about` | High-level WIAL overview |
 | `/action-learning` | Action Learning overview |
-| `/action-learning/benefits` | Benefits-focused explainer page |
-| `/certification` | Certification pathway overview |
-| `/our-services` | WIAL services page |
-| `/contact` | Main WIAL contact page |
-| `/newsletter` | Newsletter signup UI |
-| `/directory` | Seed-based coach directory experience |
-| `/coaches` | Searchable coach directory driven by `/api/search` |
-| `/coaches/[id]` | Individual coach profile page |
-| `/payment/success` | Stripe payment confirmation page |
+| `/action-learning/benefits` | Benefits explainer |
+| `/certification` | Certification pathway |
+| `/our-services` | WIAL services |
+| `/contact` | Main contact page |
+| `/newsletter` | Newsletter signup |
+| `/coaches` | Searchable coach directory |
+| `/coaches/[id]` | Individual coach profile |
+| `/directory` | Seed-based coach experience |
+| `/payment/success` | Stripe payment confirmation |
 
-### Dynamic chapter routes
-
+### Dynamic Chapter Routes
 | Route | Purpose |
-| --- | --- |
+|-------|---------|
 | `/:chapter` | Chapter landing page |
-| `/:chapter/about` | Chapter-specific about page |
-| `/:chapter/contact` | Chapter-specific contact page |
+| `/:chapter/about` | Chapter-specific about |
+| `/:chapter/contact` | Chapter-specific contact |
 
-### Admin routes
-
+### Admin Routes
 | Route | Purpose |
-| --- | --- |
+|-------|---------|
 | `/admin/login` | Admin authentication |
-| `/admin` | Chapter provisioning and content editing dashboard |
-| `/admin/access` | Global-admin access management workspace |
-| `/admin/unauthorized` | Signed-in but not allowlisted |
+| `/admin` | Provisioning & content dashboard |
+| `/admin/access` | Access management workspace |
+| `/admin/unauthorized` | Not allowlisted fallback |
 
-### CMS route
-
+### API Routes
 | Route | Purpose |
-| --- | --- |
-| `/studio` | Embedded Sanity Studio |
-
-### API routes
-
-| Route | Purpose |
-| --- | --- |
-| `/api/search` | Coach search/filter endpoint |
-| `/api/forms/submit` | Form submission demo endpoint |
-| `/api/embed` | Jina embedding generation endpoint |
-| `/api/stripe/checkout` | Creates Stripe checkout sessions |
-| `/api/stripe/webhook` | Handles Stripe payment updates |
-| `/api/admin/chapters` | Creates new chapter records |
+|-------|---------|
+| `/api/search` | Coach search/filter |
+| `/api/stripe/checkout` | Creates Stripe sessions |
+| `/api/stripe/webhook` | Handles payment updates |
+| `/api/admin/chapters` | Creates chapter records |
 | `/api/admin/chapters/[slug]` | Updates chapter content |
-| `/api/admin/chapters/one-click` | Chapter-lead one-click provisioning |
+| `/api/admin/chapters/one-click` | Chapter-lead provisioning |
 | `/api/admin/chapter-admins` | Create admin/access records |
-| `/api/admin/chapter-admins/[id]` | Update admin/access records |
+| `/api/embed` | Jina embedding endpoint |
 
-## Technical Architecture
+---
 
-### Frontend
+## 🗄️ Data Model
 
-- Next.js 16 App Router
-- React 19
-- Tailwind CSS 4
-- Component-based UI under `src/components`
-
-### Backend and data
-
-- Supabase for authentication and relational data
-- Supabase SQL files for schema + seeds in `supabase/`
-- Stripe for payment checkout and webhook handling
-- Sanity Studio for CMS extensibility
-- OpenAI client helper included for future AI-enabled workflows
-- Jina embeddings endpoint prepared for semantic search experiments
-
-### Project structure
-
-```text
-src/
-  app/                  Next.js App Router pages and API routes
-  components/           UI components for marketing, admin, coaches, layout
-  lib/                  Supabase, auth, chapter, Stripe, and helper logic
-  sanity/               Sanity client and schema definitions
-supabase/
-  schema.sql            Core database schema
-  seed.sql              Seed data for chapters, admins, and coaches
-  rls.sql               Row-level security policies
-studio/                 Sanity studio package files
+```
+chapters ─────────────────────── chapter_admins
+  │  slug, name, content, meta     │  email, role, pre-approved
+  │                                │
+  └──── coaches ─────────────── payments
+          name, cert, location,    stripe_id, status, amount
+          chapter_id, embedding
 ```
 
-## Data Model
+Four core Supabase tables wire together the whole platform: public chapters → chapter admins → coach profiles → Stripe-backed payments.
 
-The Supabase schema currently centers around four core tables:
+---
 
-- `chapters`
-  Stores the public chapter microsite content and routing metadata.
-- `chapter_admins`
-  Stores allowlisted admins/chapter leads plus optional pre-approved provisioning profiles.
-- `coaches`
-  Stores coach profiles, certifications, locations, and embedding vectors.
-- `payments`
-  Stores Stripe-backed payment records and statuses.
+## 🚀 Getting Started
 
-This gives the project a clean path from public marketing site -> chapter microsite -> coach discovery -> authenticated admin operations.
-
-## What Works Right Now vs. What Is Scaffolded
-
-### Working in the current repo
-
-- public marketing pages
-- responsive site layout
-- dynamic chapter routing
-- chapter fallback data
-- searchable coach directory using seed data
-- auth-gated admin route flow
-- admin provisioning/content management UI
-- Supabase schema and seed setup
-
-### Implemented but requires environment configuration
-
-- live Supabase-backed chapter/content/admin workflows
-- Stripe payments
-- Sanity Studio content management
-- coach detail pages backed by Supabase rows
-- embedding generation via Jina API
-
-### Present but still early-stage / extendable
-
-- semantic search using stored vector embeddings
-- newsletter submission integration
-- richer form handling beyond the demo submit endpoint
-- broader CMS-driven content usage on public pages
-
-## How To Reproduce This Project
-
-### 1. Clone and install
+### 1 · Clone & install
 
 ```bash
 git clone https://github.com/2026-ASU-WiCS-Opportunity-Hack/21-not-so-cool.git
@@ -240,23 +158,18 @@ cd 21-not-so-cool
 npm install
 ```
 
-### 2. Create environment variables
+### 2 · Configure environment
 
-Create a `.env.local` file in the project root.
-
-Minimum variables for the base Next.js app:
+Create `.env.local` in the project root:
 
 ```bash
+# Required
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
-# or use NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY instead
 SUPABASE_SERVICE_ROLE_KEY=
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
-```
 
-Optional integrations:
-
-```bash
+# Optional integrations
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_SANITY_PROJECT_ID=
@@ -265,72 +178,138 @@ OPENAI_API_KEY=
 JINA_EMBEDDING_TOKEN=
 ```
 
-### 3. Set up Supabase
+### 3 · Set up Supabase
 
-In your Supabase SQL editor, run the files in this order:
+Run these files in order from the Supabase SQL editor:
 
-1. `supabase/schema.sql`
-2. `supabase/seed.sql`
-3. `supabase/rls.sql`
+```
+supabase/schema.sql   →  core tables
+supabase/seed.sql     →  example chapters, admins, coaches
+supabase/rls.sql      →  row-level security policies
+```
 
-This creates the base tables and seeds example chapter/admin/coach data used by the app.
-
-### 4. Start the app
+### 4 · Run it
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000) and explore:
 
-### 5. Explore the main flows
+| Flow | Start here |
+|------|-----------|
+| Public site | `/` |
+| Coach search | `/coaches` |
+| Chapter microsite | `/usa` or another seeded slug |
+| Admin dashboard | `/admin/login` |
+| Sanity Studio | `/studio` *(requires env vars)* |
 
-- Visit `/` for the public site
-- Visit `/coaches` for coach search
-- Visit `/usa` or another seeded chapter slug for dynamic chapter pages
-- Visit `/admin/login` for the admin flow
-- Visit `/studio` if Sanity environment variables are configured
+### 5 · Test admin access
 
-### 6. Test admin access
+The seed data includes three ready-to-use allowlisted admins:
 
-The app expects admins to be allowlisted in the `chapter_admins` table.
-
-Seed data already includes example records such as:
-
-- `admin@wial.org` as a global admin
-- `canada.lead@wial.org` as a chapter lead
-- `kenya.lead@wial.org` as a pre-approved one-click provisioning lead
-
-If an email is allowlisted, that user can use the Create Account flow on `/admin/login` to bootstrap a Supabase auth user and then sign in.
-
-## Available Scripts
-
-```bash
-npm run dev
-npm run build
-npm run start
-npm run lint
+```
+admin@wial.org          →  global admin
+canada.lead@wial.org    →  chapter lead
+kenya.lead@wial.org     →  pre-approved one-click provisioning lead
 ```
 
-## Future Scope
+Use **Create Account** on `/admin/login` to bootstrap a Supabase auth user, then sign in.
 
-- Replace fallback/seed-driven coach search with live Supabase + semantic vector search
-- Connect newsletter signup to a real provider such as Constant Contact
-- Make Sanity the primary content source for marketing pages
-- Add richer chapter branding controls, media uploads, and localized content blocks
-- Expand payments into a full certification/eLearning workflow
-- Add analytics, audit logs, and stronger admin activity tracking
-- Support subdomain-based chapter launches in addition to subdirectory routing
-- Add production-ready test coverage and deployment documentation
+---
 
-## Why This Project Matters
+## 🔬 Tech Stack
 
-This MVP is not just a redesign. It proposes a scalable operating model for a nonprofit/global-network website:
+<table>
+<tr>
+<td><b>Frontend</b></td>
+<td>Next.js 16 App Router · React 19 · Tailwind CSS 4</td>
+</tr>
+<tr>
+<td><b>Auth & Data</b></td>
+<td>Supabase (Postgres + RLS + Auth)</td>
+</tr>
+<tr>
+<td><b>Payments</b></td>
+<td>Stripe Checkout + Webhooks</td>
+</tr>
+<tr>
+<td><b>CMS</b></td>
+<td>Sanity Studio (embedded at <code>/studio</code>)</td>
+</tr>
+<tr>
+<td><b>AI / Search</b></td>
+<td>Jina embeddings · OpenAI client (future semantic search)</td>
+</tr>
+</table>
 
-- one codebase
-- one brand system
-- many chapters
-- fewer manual site updates
-- a better path for coaches, chapter leads, and future growth
+---
+
+## ✅ What's Working vs. 🔧 What's Scaffolded
+
+### ✅ Working now
+- Public marketing pages & responsive layout
+- Dynamic chapter routing with fallback seed data
+- Searchable coach directory (seed-driven)
+- Auth-gated admin flow with provisioning UI
+- Supabase schema, seed, and RLS setup
+
+### 🔧 Needs environment config
+- Live Supabase-backed chapter/content/admin workflows
+- Stripe payments
+- Sanity Studio content management
+- Supabase-backed coach detail pages
+- Jina embedding generation
+
+### 🌱 Early-stage / extendable
+- Semantic search via stored vector embeddings
+- Newsletter submission integration
+- Richer form handling
+- Broader CMS-driven content on public pages
+
+---
+
+## 🔭 Future Scope
+
+- [ ] Replace seed-driven coach search with live Supabase + semantic vector search
+- [ ] Connect newsletter signup to Constant Contact or similar
+- [ ] Make Sanity the primary content source for marketing pages
+- [ ] Add richer chapter branding: media uploads, localized content blocks
+- [ ] Expand payments into a full certification/eLearning workflow
+- [ ] Add analytics, audit logs, and stronger admin activity tracking
+- [ ] Support subdomain-based chapter launches alongside subdirectory routing
+- [ ] Add production-ready test coverage and deployment docs
+
+---
+
+## 🤝 Team
+
+**Not So Cool** — built for the Women in Computer Science × Opportunity Hack: Spring 2026 Hackathon at **Arizona State University, Tempe**
+
+| | |
+|---|---|
+| Sai Amulya Pingili | |
+| Niharika Ravilla | |
+| Dyuti Mengji | |
+
+**Team Slack:** [`#team-21-not-so-cool`](https://opportunity-hack.slack.com/app_redirect?channel=team-21-not-so-cool)
+
+---
+
+## 💡 Why This Matters
+
+This MVP is not just a redesign. It proposes a **scalable operating model** for a nonprofit global-network website:
+
+> **One codebase. One brand system. Many chapters. Fewer manual updates. A better path for coaches, chapter leads, and future growth.**
 
 That makes it a strong fit for a hackathon focused on practical, mission-driven technology for organizations doing meaningful work.
+
+---
+
+<div align="center">
+
+Built with ❤️ at ASU · WiCS × Opportunity Hack Spring 2026
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-21--not--so--cool.vercel.app-6366f1?style=for-the-badge)](https://21-not-so-cool.vercel.app/)
+
+</div>
