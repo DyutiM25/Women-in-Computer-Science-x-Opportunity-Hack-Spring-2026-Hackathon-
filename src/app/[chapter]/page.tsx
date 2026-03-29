@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChapterLocalNav } from "@/components/chapters/ChapterLocalNav";
+import { StaticPicture } from "@/components/media/StaticPicture";
 import { getChapterBySlug } from "@/lib/chapters";
 export const dynamic = "force-dynamic";
 
