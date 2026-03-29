@@ -17,7 +17,8 @@ export type AuthorizedAdmin = {
   provisionFocus: string | null;
 };
 
-type ChapterAdminRow = {
+export type ManagedChapterAdmin = {
+  id: string;
   email: string;
   display_name: string | null;
   role: "global_admin" | "chapter_lead";
@@ -29,6 +30,7 @@ type ChapterAdminRow = {
   provision_summary: string | null;
   provision_focus: string | null;
   is_active: boolean;
+  created_at?: string | null;
 };
 
 export async function getCurrentAuthorizedAdmin() {
@@ -57,11 +59,11 @@ export async function getCurrentAuthorizedAdmin() {
   const { data, error } = await adminClient
     .from("chapter_admins")
     .select(
-      "email, display_name, role, chapter_slug, provision_slug, provision_name, provision_region, provision_contact_email, provision_summary, provision_focus, is_active",
+      "id, email, display_name, role, chapter_slug, provision_slug, provision_name, provision_region, provision_contact_email, provision_summary, provision_focus, is_active",
     )
     .eq("email", normalizedEmail)
     .eq("is_active", true)
-    .maybeSingle<ChapterAdminRow>();
+    .maybeSingle<ManagedChapterAdmin>();
 
   if (error || !data) {
     return { user, admin: null as AuthorizedAdmin | null };
@@ -82,6 +84,28 @@ export async function getCurrentAuthorizedAdmin() {
       provisionFocus: data.provision_focus,
     },
   };
+}
+
+export async function listManagedChapterAdmins() {
+  const adminClient = getSupabaseAdminClient();
+
+  if (!adminClient) {
+    return [] as ManagedChapterAdmin[];
+  }
+
+  const { data, error } = await adminClient
+    .from("chapter_admins")
+    .select(
+      "id, email, display_name, role, chapter_slug, provision_slug, provision_name, provision_region, provision_contact_email, provision_summary, provision_focus, is_active, created_at",
+    )
+    .order("created_at", { ascending: true })
+    .returns<ManagedChapterAdmin[]>();
+
+  if (error || !data) {
+    return [] as ManagedChapterAdmin[];
+  }
+
+  return data;
 }
 
 export async function requireAuthorizedAdmin() {

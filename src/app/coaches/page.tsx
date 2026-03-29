@@ -1,31 +1,7 @@
-<<<<<<< HEAD
-"use client";
-
-import { useEffect, useState } from "react";
-import { CoachCard, type CoachDirectoryItem } from "@/components/coaches/CoachCard";
-import { SearchBar } from "@/components/coaches/SearchBar";
-import { supabase } from "@/lib/supabase";
-=======
 import { CoachDirectory } from "@/components/coaches/CoachDirectory";
 import { coaches } from "@/lib/site-data";
->>>>>>> 38236a3 (Admin-Coach-SearchBar)
 
 export default function CoachesPage() {
-  const [coaches, setCoaches] = useState<CoachDirectoryItem[]>([]);
-
-  useEffect(() => {
-    async function fetchCoaches() {
-      const { data } = await supabase
-        .from("coaches")
-        .select("id, full_name, photo_url, cert_level, location, email, bio, chapters(name, slug)")
-        .eq("is_approved", true);
-
-      setCoaches((data ?? []) as CoachDirectoryItem[]);
-    }
-
-    void fetchCoaches();
-  }, []);
-
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-6 py-12 sm:px-10">
       <section className="space-y-4">
@@ -36,26 +12,12 @@ export default function CoachesPage() {
           Searchable, chapter-aware coach profiles.
         </h1>
         <p className="max-w-3xl text-lg leading-8 text-slate-700">
-<<<<<<< HEAD
-          Now powered by live Supabase data.
-        </p>
-      </section>
-
-      <SearchBar />
-
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {coaches.map((coach) => (
-          <CoachCard key={coach.id} coach={coach} />
-        ))}
-      </section>
-=======
           Search by coach name, location, chapter, and certification level
           using the integrated directory experience.
         </p>
       </section>
 
       <CoachDirectory coaches={coaches} />
->>>>>>> 38236a3 (Admin-Coach-SearchBar)
     </main>
   );
 }

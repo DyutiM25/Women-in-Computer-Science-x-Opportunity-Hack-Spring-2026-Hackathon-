@@ -5,10 +5,26 @@ import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WIAL MVP Platform",
+  title: "WIAL by #21NotSoCool",
   description:
     "Low-bandwidth Next.js MVP for WIAL global and chapter websites.",
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      {
+        url: "/images/wial-usa-placeholder-optimized-removebg-preview.png",
+        type: "image/png",
+        sizes: "220x113",
+      },
+    ],
+    shortcut: [
+      {
+        url: "/images/wial-usa-placeholder-optimized-removebg-preview.png",
+        type: "image/png",
+        sizes: "220x113",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

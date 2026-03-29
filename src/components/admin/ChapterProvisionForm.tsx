@@ -152,7 +152,9 @@ export function ChapterProvisionForm({
 
       {disabled ? (
         <p className="mt-4 text-sm leading-7 text-amber-700">
-          Add `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and
+          Add `NEXT_PUBLIC_SUPABASE_URL`, a public Supabase key
+          (`NEXT_PUBLIC_SUPABASE_ANON_KEY` or
+          `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`), and
           `SUPABASE_SERVICE_ROLE_KEY` to enable authenticated provisioning.
         </p>
       ) : null}

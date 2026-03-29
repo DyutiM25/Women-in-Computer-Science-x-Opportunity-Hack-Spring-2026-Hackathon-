@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { getSupabaseServerClient } from "@/lib/supabase";
 
 export default async function CoachPage({
   params,
@@ -6,6 +6,12 @@ export default async function CoachPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const supabase = getSupabaseServerClient();
+
+  if (!supabase) {
+    return <div className="p-10">Coach directory is not configured yet.</div>;
+  }
+
   const { data } = await supabase
     .from("coaches")
     .select("id, full_name, photo_url, cert_level, location, bio, email, chapters(name, slug)")

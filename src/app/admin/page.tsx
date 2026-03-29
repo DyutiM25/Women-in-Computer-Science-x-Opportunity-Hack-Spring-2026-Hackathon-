@@ -1,4 +1,5 @@
 import { AdminSignOutButton } from "@/components/admin/AdminSignOutButton";
+import { AdminWorkspaceNav } from "@/components/admin/AdminWorkspaceNav";
 import { ChapterContentEditor } from "@/components/admin/ChapterContentEditor";
 import { OneClickChapterProvisionButton } from "@/components/admin/OneClickChapterProvisionButton";
 import { ChapterProvisionForm } from "@/components/admin/ChapterProvisionForm";
@@ -36,6 +37,10 @@ export default async function AdminPage() {
               makes the new chapter available immediately through the shared
               WIAL route template.
             </p>
+            <AdminWorkspaceNav
+              currentPath="/admin"
+              showAccessLink={currentAdmin.role === "global_admin"}
+            />
           </div>
           <AdminSignOutButton />
         </div>

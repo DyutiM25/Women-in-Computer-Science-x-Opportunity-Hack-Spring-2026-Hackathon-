@@ -7,9 +7,9 @@
   "theme_color": "#0f3b57",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
+      "src": "/images/wial-usa-placeholder-optimized-removebg-preview.png",
+      "sizes": "220x113",
+      "type": "image/png"
     }
   ]
 }
