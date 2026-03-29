@@ -1,7 +1,7 @@
 import "server-only";
 
 import { chapters as fallbackChapters, type Chapter as FallbackChapter } from "@/lib/site-data";
-import { getSupabaseServerClient } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-server";
 
 export type ProvisionedChapter = {
   slug: string;
@@ -102,7 +102,7 @@ function mapChapterRow(chapter: ChapterRow): ProvisionedChapter {
 }
 
 export async function getChapterBySlug(slug: string) {
-  const supabase = getSupabaseServerClient();
+  const supabase = getSupabaseAdmin();
   const fallbackChapter = fallbackChapters.find((chapter) => chapter.slug === slug);
 
   if (!supabase) {
@@ -126,7 +126,7 @@ export async function getChapterBySlug(slug: string) {
 }
 
 export async function listProvisionedChapters() {
-  const supabase = getSupabaseServerClient();
+  const supabase = getSupabaseAdmin();
 
   if (!supabase) {
     return fallbackChapters.map(mapFallbackChapter);
