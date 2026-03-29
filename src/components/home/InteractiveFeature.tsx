@@ -88,7 +88,7 @@ export function InteractiveFeature() {
           fill
           priority
           sizes="(min-width: 1024px) 70vw, 100vw"
-          className="object-cover"
+          className="object-cover opacity-60"
         />
 
         <div className="absolute left-6 top-6 max-w-[540px] bg-white px-8 py-10 shadow-[0_14px_34px_rgba(15,34,60,0.12)] sm:left-9 sm:top-9 sm:px-9">
