@@ -1,34 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { StaticPicture } from "@/components/media/StaticPicture";
-
-const topicPanels = [
-  {
-    eyebrow: "Action Learning",
-    title: "What is Action Learning?",
-    accent: "border-l-[5px] border-[#90aef7]",
-  },
-  {
-    eyebrow: "Solution Spheres",
-    title: "Action Learning Solution",
-    accent: "border-l-[5px] border-[#82d8ab]",
-  },
-  {
-    eyebrow: "Benefits",
-    title: "Get more out of your business",
-    accent: "border-l-[5px] border-[#ff5757]",
-  },
-  {
-    eyebrow: "People",
-    title: "Search for Action Learning Coaches",
-    accent: "border-l-[5px] border-[#274b8d]",
-  },
-  {
-    eyebrow: "Certifications",
-    title: "WIAL is the world’s leading certifying body for Action Learning",
-    accent: "border-l-[5px] border-[#f3a533]",
-  },
-];
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
+import { InteractiveFeature } from "@/components/home/InteractiveFeature";
 
 const featureCards = [
   {
@@ -45,6 +18,7 @@ const featureCards = [
     accent: "bg-[#ff5b93]",
     image: "/images/network-card.jpg",
     cta: "Sign up Today",
+    ctaHref: "/newsletter",
   },
   {
     eyebrow: "Certifications",
@@ -74,62 +48,96 @@ const mostReadColumns = [
   },
 ];
 
+const socialLinks = [
+  { href: "https://twitter.com", label: "Twitter", icon: FaTwitter },
+  { href: "https://linkedin.com", label: "LinkedIn", icon: FaLinkedinIn },
+  { href: "https://facebook.com", label: "Facebook", icon: FaFacebookF },
+  { href: "https://youtube.com", label: "YouTube", icon: FaYoutube },
+];
+
 export default function HomePage() {
   return (
     <main className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-8 px-4 py-8 sm:px-8 lg:px-10">
-      <section
-        id="home"
-        className="grid gap-0 lg:grid-cols-[minmax(0,1.65fr)_355px]"
-      >
-        <div className="relative min-h-[560px] overflow-hidden bg-white shadow-[0_12px_40px_rgba(28,40,70,0.08)]">
-          <StaticPicture
-            alt="Action Learning group discussion"
-            width={960}
-            height={700}
-            className="block h-full w-full"
-            sources={[
-              { srcSet: "/images/network-card.avif", type: "image/avif" },
-              { srcSet: "/images/network-card.webp", type: "image/webp" },
-            ]}
-            fallbackSrc="/images/network-card.jpg"
-            loading="eager"
-          />
+      <InteractiveFeature />
 
-          <div className="absolute left-6 top-6 max-w-[540px] bg-white px-8 py-10 shadow-[0_14px_34px_rgba(15,34,60,0.12)] sm:left-9 sm:top-9 sm:px-9">
-            <p className="text-sm uppercase tracking-[0.28em] text-[#90aef7]">
-              Action Learning
-            </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[#5b5b5b]">
-              What is Action Learning?
-            </h1>
-            <p className="mt-5 max-w-[430px] text-[1.05rem] font-medium leading-8 text-[#151515]">
-              Action Learning is a new way of thinking, doing business, and
-              interacting in teams.
-            </p>
-            <Link
-              href="/about"
-              className="mt-8 inline-flex bg-white px-6 py-4 text-sm uppercase tracking-[0.18em] text-[#666] shadow-[0_10px_18px_rgba(28,40,70,0.12)] transition hover:text-[#cc1f1f]"
-            >
-              Read More
-            </Link>
-          </div>
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <article className="rounded-[2rem] bg-white px-8 py-10 shadow-[0_12px_36px_rgba(28,40,70,0.08)]">
+          <p className="text-sm uppercase tracking-[0.28em] text-[#8da7ff]">
+            What is Action Learning
+          </p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-[#5b5b5b]">
+            A way of thinking, doing business, and interacting in teams.
+          </h2>
+          <p className="mt-5 max-w-3xl text-[1.02rem] leading-8 text-[#555]">
+            In the WIAL method, small groups work on real problems, take
+            action, and learn at the same time. Questions sit at the center of
+            the process, and an Action Learning Coach helps the team reflect on
+            how it is learning while it solves the challenge in front of it.
+          </p>
+          <p className="mt-4 max-w-3xl text-[1rem] leading-8 text-[#555]">
+            That combination is what makes Action Learning distinct: teams do
+            not stop at discussion or brainstorming. They clarify the problem,
+            act on it, learn from the action, and strengthen leadership
+            capacity in the process.
+          </p>
+          <Link
+            href="/action-learning"
+            className="mt-8 inline-flex rounded-xl bg-[#0d809b] px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#0b6c84]"
+          >
+            Explore Action Learning
+          </Link>
+        </article>
+
+        <article className="rounded-[2rem] bg-[#f7f9fd] px-8 py-10 shadow-[0_12px_36px_rgba(28,40,70,0.08)]">
+          <p className="text-sm uppercase tracking-[0.28em] text-[#f3a533]">
+            Certification Teaser
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#0b4a9c]">
+            WIAL is the world&apos;s leading certifying body for Action Learning.
+          </h2>
+          <ul className="mt-5 space-y-3 text-[1rem] leading-8 text-[#555]">
+            <li>CALCs can coach Action Learning sessions.</li>
+            <li>PALCs demonstrate proven coaching ability in practice.</li>
+            <li>SALCs are cleared to lead all WIAL programs.</li>
+            <li>MALCs are recognized as thought leaders in the field.</li>
+          </ul>
+          <Link
+            href="/certification"
+            className="mt-8 inline-flex rounded-xl border border-[#0b4a9c] px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#0b4a9c] transition hover:bg-[#0b4a9c] hover:text-white"
+          >
+            View Certification Path
+          </Link>
+        </article>
+      </section>
+
+      <section className="rounded-[2rem] bg-[#d50f45] px-8 py-10 text-white shadow-[0_12px_36px_rgba(28,40,70,0.08)]">
+        <p className="text-sm uppercase tracking-[0.28em] text-white/70">
+          CTA
+        </p>
+        <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight">
+          Build one clear front door for a global network of chapters,
+          coaches, and future certification journeys.
+        </h2>
+        <p className="mt-5 max-w-3xl text-[1rem] leading-8 text-white/85">
+          This MVP focuses on the brochure-style foundation first: a branded
+          home page, a clearer explanation of Action Learning, a stronger
+          certification path overview, and a simple contact path for chapter
+          leads, coaches, and prospective partners.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Link
+            href="/about"
+            className="inline-flex rounded-xl bg-[#0d809b] px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#0b6c84]"
+          >
+            Learn About WIAL
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex rounded-xl border border-white/70 px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-[#d50f45]"
+          >
+            Contact WIAL
+          </Link>
         </div>
-
-        <aside className="bg-white shadow-[0_12px_40px_rgba(28,40,70,0.08)]">
-          {topicPanels.map((panel) => (
-            <article
-              key={panel.title}
-              className={`min-h-[112px] border-b border-[#f1f1f1] px-8 py-9 ${panel.accent}`}
-            >
-              <p className="text-sm uppercase tracking-[0.2em] text-[#8da7ff]">
-                {panel.eyebrow}
-              </p>
-              <h2 className="mt-3 text-[1.15rem] font-semibold leading-9 text-[#0b4a9c]">
-                {panel.title}
-              </h2>
-            </article>
-          ))}
-        </aside>
       </section>
 
       <section
@@ -163,12 +171,12 @@ export default function HomePage() {
                 {card.body}
               </p>
               {card.cta ? (
-                <button
-                  type="button"
+                <Link
+                  href={card.ctaHref ?? "#"}
                   className="rounded-xl bg-[#0d809b] px-8 py-4 text-xl font-medium text-white"
                 >
                   {card.cta}
-                </button>
+                </Link>
               ) : null}
             </div>
           </article>
@@ -221,13 +229,17 @@ export default function HomePage() {
               Follow Us
             </h2>
             <div className="mt-4 flex gap-3">
-              {["t", "in", "f", "▶"].map((item) => (
-                <span
-                  key={item}
-                  className="flex h-11 w-11 items-center justify-center rounded bg-[#0d809b] text-lg font-semibold text-white"
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-11 w-11 items-center justify-center rounded bg-[#0d809b] text-white transition hover:bg-[#0a6d84]"
                 >
-                  {item}
-                </span>
+                  <Icon className="h-[18px] w-[18px]" />
+                </a>
               ))}
             </div>
           </div>

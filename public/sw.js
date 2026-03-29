@@ -37,6 +37,14 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  const requestUrl = new URL(event.request.url);
+  if (
+    requestUrl.protocol !== "http:" &&
+    requestUrl.protocol !== "https:"
+  ) {
+    return;
+  }
+
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request).catch(() => caches.match("/offline.html")),
@@ -52,6 +60,14 @@ self.addEventListener("fetch", (event) => {
 
       return fetch(event.request)
         .then((response) => {
+          if (
+            !response.ok ||
+            response.type === "opaque" ||
+            requestUrl.origin !== self.location.origin
+          ) {
+            return response;
+          }
+
           const clonedResponse = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, clonedResponse);

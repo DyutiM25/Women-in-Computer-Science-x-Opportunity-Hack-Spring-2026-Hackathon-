@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -15,6 +16,13 @@ const navItems = [
   { href: "/about", label: "About Us" },
 ];
 
+const socialLinks = [
+  { href: "https://twitter.com", label: "Twitter", icon: FaTwitter },
+  { href: "https://linkedin.com", label: "LinkedIn", icon: FaLinkedinIn },
+  { href: "https://facebook.com", label: "Facebook", icon: FaFacebookF },
+  { href: "https://youtube.com", label: "YouTube", icon: FaYoutube },
+];
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -23,11 +31,19 @@ export function Header() {
       <div className="bg-[#d50f45] text-white">
         <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-6 py-3 text-sm uppercase tracking-[0.3em] sm:px-8 lg:px-10">
           <span>Home</span>
-          <div className="flex items-center gap-5 text-xs tracking-normal">
-            <span>t</span>
-            <span>in</span>
-            <span>f</span>
-            <span>▶</span>
+          <div className="flex items-center gap-3 text-xs tracking-normal">
+            {socialLinks.map(({ href, label, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:opacity-80"
+              >
+                <Icon className="h-[18px] w-[18px]" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
