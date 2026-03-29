@@ -1,10 +1,15 @@
 import { supabase } from "@/lib/supabase";
 
-export default async function CoachPage({ params }: { params: { id: string } }) {
+export default async function CoachPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const { data } = await supabase
     .from("coaches")
     .select("id, full_name, photo_url, cert_level, location, bio, email, chapters(name, slug)")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (!data) return <div className="p-10">Not found</div>;

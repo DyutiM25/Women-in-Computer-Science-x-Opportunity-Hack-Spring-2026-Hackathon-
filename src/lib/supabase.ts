@@ -6,3 +6,5 @@ export function getSupabaseBrowserClient() {
   if (!url || !key) throw new Error('Supabase public env vars are not set')
   return createClient(url, key)
 }
+
+export const supabase = getSupabaseBrowserClient()
