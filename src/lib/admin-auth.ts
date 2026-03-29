@@ -87,7 +87,7 @@ export async function getCurrentAuthorizedAdmin() {
 }
 
 export async function listManagedChapterAdmins() {
-  const adminClient = getSupabaseAdminClient();
+  const adminClient = getSupabaseAdmin();
 
   if (!adminClient) {
     return [] as ManagedChapterAdmin[];
