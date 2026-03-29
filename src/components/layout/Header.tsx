@@ -8,11 +8,12 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa"
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/#home", label: "Action Learning" },
-  { href: "/#contact", label: "WIAL’s Team" },
+  { href: "/#contact", label: "WIAL's Team" },
   { href: "/#events", label: "Conferences" },
   { href: "/#events", label: "Our Clients" },
   { href: "/#events", label: "Programs" },
   { href: "/#events", label: "Better World" },
+  { href: "/coaches", label: "Coaches" },
   { href: "/about", label: "About Us" },
   { href: "/admin/login", label: "Admin Login" },
 ];

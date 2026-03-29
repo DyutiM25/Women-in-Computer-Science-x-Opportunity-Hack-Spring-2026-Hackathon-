@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type AdminWorkspaceNavProps = {
-  currentPath: "/admin" | "/admin/access";
+  currentPath: "/admin" | "/admin/access" | "/admin/payments";
   showAccessLink: boolean;
 };
 
@@ -30,6 +30,12 @@ export function AdminWorkspaceNav({
           Access Management
         </Link>
       ) : null}
+      <Link
+        href="/admin/payments"
+        className={getLinkClasses(currentPath === "/admin/payments")}
+      >
+        Coach Payments
+      </Link>
     </nav>
   );
 }
