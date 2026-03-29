@@ -1,4 +1,5 @@
 alter table chapters enable row level security;
+alter table chapter_admins enable row level security;
 alter table coaches enable row level security;
 alter table payments enable row level security;
 
@@ -9,6 +10,10 @@ using (true);
 create policy "Public read approved coaches"
 on coaches for select
 using (is_approved = true);
+
+create policy "Admin can read own access"
+on chapter_admins for select
+using (lower(email) = lower(coalesce(auth.jwt()->>'email', '')));
 
 create policy "Coach updates own profile"
 on coaches for update

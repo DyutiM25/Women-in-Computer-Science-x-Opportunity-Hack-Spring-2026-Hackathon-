@@ -14,6 +14,7 @@ const navItems = [
   { href: "/#events", label: "Programs" },
   { href: "/#events", label: "Better World" },
   { href: "/about", label: "About Us" },
+  { href: "/admin/login", label: "Admin Login" },
 ];
 
 const socialLinks = [
@@ -31,19 +32,27 @@ export function Header() {
       <div className="bg-[#d50f45] text-white">
         <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-6 py-3 text-sm uppercase tracking-[0.3em] sm:px-8 lg:px-10">
           <span>Home</span>
-          <div className="flex items-center gap-3 text-xs tracking-normal">
-            {socialLinks.map(({ href, label, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                target="_blank"
-                rel="noreferrer"
-                className="transition hover:opacity-80"
-              >
-                <Icon className="h-[18px] w-[18px]" />
-              </a>
-            ))}
+          <div className="flex items-center gap-4 text-xs tracking-normal">
+            <Link
+              href="/admin/login"
+              className="rounded-full border border-white/30 px-3 py-1 font-semibold uppercase tracking-[0.18em] transition hover:border-white hover:bg-white hover:text-[#d50f45]"
+            >
+              Admin Login
+            </Link>
+            <div className="flex items-center gap-3">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition hover:opacity-80"
+                >
+                  <Icon className="h-[18px] w-[18px]" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

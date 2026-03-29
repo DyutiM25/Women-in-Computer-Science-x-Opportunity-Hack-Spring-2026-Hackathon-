@@ -9,7 +9,31 @@ create table chapters (
   region text,
   contact_email text,
   description text,
+  focus text,
   hero_image_url text,
+  about_heading text,
+  about_body text,
+  contact_heading text,
+  contact_body text,
+  external_site_url text,
+  other_offerings_label text,
+  status text not null default 'active' check (status in ('draft','active','archived')),
+  launch_mode text not null default 'subdirectory' check (launch_mode in ('subdirectory','subdomain')),
+  template_version text not null default 'wial-core-v1',
+  created_by text,
+  updated_by text,
+  updated_at timestamptz default now(),
+  created_at timestamptz default now()
+);
+
+-- Authorized chapter admins / leads
+create table chapter_admins (
+  id uuid primary key default gen_random_uuid(),
+  email text unique not null,
+  display_name text,
+  role text not null check (role in ('global_admin','chapter_lead')),
+  chapter_slug text references chapters(slug) on delete set null,
+  is_active boolean not null default true,
   created_at timestamptz default now()
 );
 
