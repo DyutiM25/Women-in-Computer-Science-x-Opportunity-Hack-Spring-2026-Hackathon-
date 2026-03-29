@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { stripe } from '@/lib/stripe'
+import Link from 'next/link'
+import { getStripe } from '@/lib/stripe'
 
 export default async function SuccessPage({
   searchParams,
@@ -12,7 +12,7 @@ export default async function SuccessPage({
     return <div>Invalid session.</div>
   }
 
-  const session = await stripe.checkout.sessions.retrieve(session_id)
+  const session = await getStripe().checkout.sessions.retrieve(session_id)
 
   const paid = session.payment_status === 'paid'
   const amount = session.amount_total
