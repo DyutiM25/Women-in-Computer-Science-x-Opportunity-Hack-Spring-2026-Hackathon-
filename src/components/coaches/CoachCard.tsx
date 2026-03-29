@@ -6,7 +6,7 @@ type CoachCardProps = {
 
 export function CoachCard({ coach }: CoachCardProps) {
   return (
-    <article className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+    <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-800">
