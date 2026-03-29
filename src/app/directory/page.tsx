@@ -1,5 +1,4 @@
-import { CoachCard } from "@/components/coaches/CoachCard";
-import { SearchBar } from "@/components/coaches/SearchBar";
+import { CoachDirectory } from "@/components/coaches/CoachDirectory";
 import { coaches } from "@/lib/site-data";
 
 export default function DirectoryPage() {
@@ -19,13 +18,7 @@ export default function DirectoryPage() {
         </p>
       </section>
 
-      <SearchBar />
-
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {coaches.map((coach) => (
-          <CoachCard key={coach.email} coach={coach} />
-        ))}
-      </section>
+      <CoachDirectory coaches={coaches} />
     </main>
   );
 }

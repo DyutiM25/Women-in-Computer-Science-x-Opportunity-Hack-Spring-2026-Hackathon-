@@ -33,6 +33,12 @@ create table chapter_admins (
   display_name text,
   role text not null check (role in ('global_admin','chapter_lead')),
   chapter_slug text references chapters(slug) on delete set null,
+  provision_slug text,
+  provision_name text,
+  provision_region text,
+  provision_contact_email text,
+  provision_summary text,
+  provision_focus text,
   is_active boolean not null default true,
   created_at timestamptz default now()
 );

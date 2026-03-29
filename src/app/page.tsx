@@ -9,14 +9,14 @@ const featureCards = [
     title: "WIAL Better World Fund",
     body: "WIAL established the WIAL Better World Fund in 2015 to provide Action Learning services to community-based organizations around the world.",
     accent: "bg-[#274b8d]",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
   },
   {
     eyebrow: "News Letter",
     title: "Join Our Newsletter",
     body: "Want to stay up-to-date on all things Action Learning? Never miss a beat! Join our newsletter.",
     accent: "bg-[#ff5b93]",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
     cta: "Sign up Today",
     ctaHref: "/newsletter",
   },
@@ -25,7 +25,7 @@ const featureCards = [
     title: "In-House Programs",
     body: "Want to bring Action Learning to your business? We have In-House programs where a certified coach will conduct Action Learning training.",
     accent: "bg-[#f3a533]",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
   },
 ];
 
@@ -191,7 +191,7 @@ export default function HomePage() {
           </h2>
           <div className="mt-8 overflow-hidden border border-[#f0f0f0]">
             <Image
-              src="/images/network-card.jpg"
+              src="/images/image.png"
               alt="WIAL video preview"
               width={320}
               height={180}

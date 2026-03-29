@@ -95,12 +95,24 @@ insert into chapter_admins (
   display_name,
   role,
   chapter_slug,
+  provision_slug,
+  provision_name,
+  provision_region,
+  provision_contact_email,
+  provision_summary,
+  provision_focus,
   is_active
 ) values
   (
     'admin@wial.org',
     'WIAL Platform Admin',
     'global_admin',
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     true
   ),
@@ -109,6 +121,25 @@ insert into chapter_admins (
     'WIAL Canada Chapter Lead',
     'chapter_lead',
     'canada',
+    'canada',
+    'WIAL Canada',
+    'North America',
+    'canada@wial.org',
+    'A newly provisioned chapter site created from the shared WIAL chapter template.',
+    'National chapter launch planning and bilingual community visibility',
+    true
+  ),
+  (
+    'kenya.lead@wial.org',
+    'WIAL Kenya Chapter Lead',
+    'chapter_lead',
+    null,
+    'kenya',
+    'WIAL Kenya',
+    'East Africa',
+    'kenya@wial.org',
+    'A newly provisioned WIAL Kenya chapter site created through the chapter lead one-click workflow.',
+    'Regional network building and Action Learning awareness in East Africa',
     true
   )
 on conflict (email) do nothing;

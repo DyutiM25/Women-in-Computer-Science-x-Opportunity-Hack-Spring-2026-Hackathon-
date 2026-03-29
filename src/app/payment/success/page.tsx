@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { stripe } from '@/lib/stripe'
 
 export default async function SuccessPage({
@@ -41,7 +42,7 @@ export default async function SuccessPage({
             <p style={{ color: '#666' }}>We are confirming your payment.</p>
           </>
         )}
-        <a
+        <Link
           href="/admin"
           style={{
             display: 'inline-block',
@@ -55,7 +56,7 @@ export default async function SuccessPage({
           }}
         >
           Back to dashboard
-        </a>
+        </Link>
       </div>
     </main>
   )

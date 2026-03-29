@@ -23,7 +23,7 @@ const featureItems: FeatureItem[] = [
     href: "/action-learning",
     ctaLabel: "Read More",
     accentColor: "#90aef7",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
     imageAlt: "Action Learning group discussion",
   },
   {
@@ -34,7 +34,7 @@ const featureItems: FeatureItem[] = [
     href: "/our-services",
     ctaLabel: "Read More",
     accentColor: "#82d8ab",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
     imageAlt: "Action Learning solutions workshop",
   },
   {
@@ -45,7 +45,7 @@ const featureItems: FeatureItem[] = [
     href: "/action-learning/benefits",
     ctaLabel: "Read More",
     accentColor: "#ff2e2e",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
     imageAlt: "Business leader presenting benefits",
   },
   {
@@ -56,7 +56,7 @@ const featureItems: FeatureItem[] = [
     href: "/directory",
     ctaLabel: "Read More",
     accentColor: "#1f396e",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
     imageAlt: "Coach directory profile visual",
   },
   {
@@ -67,7 +67,7 @@ const featureItems: FeatureItem[] = [
     href: "/certification",
     ctaLabel: "Learn More",
     accentColor: "#f3a533",
-    image: "/images/network-card.jpg",
+    image: "/images/image.png",
     imageAlt: "Certification leadership session",
   },
 ];

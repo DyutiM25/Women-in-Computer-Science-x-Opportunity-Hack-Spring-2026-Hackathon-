@@ -36,7 +36,7 @@ export function CoachCard({ coach }: CoachCardProps) {
     : "/images/wial-usa-placeholder.png";
 
   return (
-    <article className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+    <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex items-start gap-4">
         <img
           src={photoUrl}

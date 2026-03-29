@@ -1,5 +1,7 @@
 import { AdminSignOutButton } from "@/components/admin/AdminSignOutButton";
+import { AdminWorkspaceNav } from "@/components/admin/AdminWorkspaceNav";
 import { ChapterContentEditor } from "@/components/admin/ChapterContentEditor";
+import { OneClickChapterProvisionButton } from "@/components/admin/OneClickChapterProvisionButton";
 import { ChapterProvisionForm } from "@/components/admin/ChapterProvisionForm";
 import { requireAuthorizedAdmin } from "@/lib/admin-auth";
 import { listProvisionedChapters } from "@/lib/chapters";
@@ -30,6 +32,10 @@ export default async function AdminPage() {
               makes the new chapter available immediately through the shared
               WIAL route template.
             </p>
+            <AdminWorkspaceNav
+              currentPath="/admin"
+              showAccessLink={currentAdmin.role === "global_admin"}
+            />
           </div>
           <AdminSignOutButton />
         </div>
@@ -45,12 +51,24 @@ export default async function AdminPage() {
         <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 text-sm leading-7 text-slate-700 shadow-sm">
           {currentAdmin.chapterSlug
             ? `Assigned chapter: ${currentAdmin.chapterSlug}`
-            : `Active chapters listed below: ${chapters.length}`}
+            : currentAdmin.provisionSlug
+              ? `Pre-approved chapter: ${currentAdmin.provisionSlug}`
+              : `Active chapters listed below: ${chapters.length}`}
         </div>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <ChapterProvisionForm disabled={!provisioningEnabled} />
+        {showOneClickChapterProvision ? (
+          <OneClickChapterProvisionButton
+            chapterSlug={currentAdmin.provisionSlug!}
+          />
+        ) : (
+          <ChapterProvisionForm
+            disabled={
+              !provisioningEnabled || currentAdmin.role !== "global_admin"
+            }
+          />
+        )}
 
         <section className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="space-y-3">
